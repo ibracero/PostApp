@@ -6,7 +6,7 @@ import com.ibracero.postapp.presentation.di.components.AppComponent;
 import com.ibracero.postapp.presentation.di.components.DaggerAppComponent;
 import com.ibracero.postapp.presentation.di.modules.AppModule;
 
-public class BaseApp extends Application {
+public class PostApp extends Application {
 
     private AppComponent mAppComponent;
 

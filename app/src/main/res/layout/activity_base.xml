@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
@@ -7,10 +8,18 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"/>
+        android:background="?attr/colorPrimary">
+
+        <TextView
+            android:id="@+id/tv_toolbar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"/>
+
+    </android.support.v7.widget.Toolbar>
 
     <FrameLayout
-        android:id="@+id/fl_container"
+        android:id="@+id/fl_base_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/toolbar"/>
@@ -19,8 +28,10 @@
         android:id="@+id/pb_loading"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_alignBottom="@id/fl_container"
-        android:layout_alignTop="@id/fl_container"
-        android:layout_centerInParent="true"/>
+        android:layout_alignBottom="@id/fl_base_container"
+        android:layout_alignTop="@id/fl_base_container"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        tools:visibility="visible"/>
 
 </RelativeLayout>
