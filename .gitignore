@@ -1,0 +1,40 @@
+# files for the dex VM
+*.dex
+
+# Java class files
+*.class
+
+# Generated files
+bin/
+gen/
+
+# iml files
+*.iml
+
+# Generated Gradle files
+.gradle/
+gradle/
+gradlew*
+build/
+.idea/*
+.idea
+.navigation
+class_files.txt
+mapping.txt
+seeds.txt
+unused.txt
+
+# Main module
+app/build/
+app/class_files.txt
+app/mapping.txt
+app/seeds.txt
+app/unused.txt
+
+# Generated Proguard files
+proguard/
+
+# Others
+/local.properties
+/.idea/*.xml
+.DS_Store
