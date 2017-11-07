@@ -2,20 +2,32 @@ package com.ibracero.postapp.presentation.ui.post_list;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.babylonhealth.babylonpost.R;
+import com.ibracero.postapp.domain.model.Post;
 import com.ibracero.postapp.presentation.di.components.ActivityComponent;
 import com.ibracero.postapp.presentation.ui.base.BaseFragment;
+import com.ibracero.postapp.presentation.ui.error.ErrorNotificator;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
-import butterknife.OnClick;
+import butterknife.BindView;
 
 public class PostListFragment extends BaseFragment implements PostListViewInterface {
 
+
+    @BindView(R.id.rv_posts)
+    RecyclerView mRvPosts;
+
     @Inject
     PostListPresenter mPresenter;
+
+    @Inject
+    ErrorNotificator mErrorNotificator;
 
     public static PostListFragment newInstance() {
         PostListFragment fragment = new PostListFragment();
@@ -35,9 +47,14 @@ public class PostListFragment extends BaseFragment implements PostListViewInterf
         mPresenter.onStart();
     }
 
-    @OnClick(R.id.tv_clickable)
-    public void onTextViewClicked(){
-        mPresenter.onPostClicked();
+    @Override
+    public void showErrorMessage(String message) {
+        mErrorNotificator.showMessage(message);
+    }
+
+    @Override
+    public void showPosts(List<Post> posts) {
+        mErrorNotificator.showMessage(posts != null ? String.valueOf(posts.size()) : "0");
     }
 
     @Override

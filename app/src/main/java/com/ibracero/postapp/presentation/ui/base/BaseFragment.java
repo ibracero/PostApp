@@ -10,8 +10,11 @@ import android.view.ViewGroup;
 import com.ibracero.postapp.presentation.di.qualifiers.HasComponent;
 
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 public abstract class BaseFragment extends Fragment implements BaseView {
+
+    private Unbinder unbinder;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -37,7 +40,7 @@ public abstract class BaseFragment extends Fragment implements BaseView {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        ButterKnife.bind(this, view);
+        unbinder = ButterKnife.bind(this, view);
     }
 
     /**
@@ -71,6 +74,12 @@ public abstract class BaseFragment extends Fragment implements BaseView {
     public void onStop() {
         super.onStop();
         hideLoading();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
     }
 }
 

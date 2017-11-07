@@ -2,6 +2,9 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 26
+
+    flavorDimensions "default"
+
     defaultConfig {
         applicationId "com.babylonhealth.babylonpost"
         minSdkVersion 19
@@ -10,30 +13,76 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
+    productFlavors {
+        dev {
+            buildConfigField 'String', 'BASE_URL', '"https://jsonplaceholder.typicode.com"'
+        }
+    }
+
+
     buildTypes {
+
+        debug {
+
+        }
+
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.android.support:appcompat-v7:26.1.0'
-    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+
+    def androidSupportVersion = "26.1.0"
+
+    //Support
+    implementation 'com.android.support:appcompat-v7:' + androidSupportVersion
+    implementation 'com.android.support:support-v4:' + androidSupportVersion
+    implementation 'com.android.support:design:' + androidSupportVersion
+    implementation 'com.android.support:recyclerview-v7:' + androidSupportVersion
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 
-
-    compile 'com.google.dagger:dagger-android:2.11'
-    compile 'com.google.dagger:dagger-android-support:2.11' // if you use the support libraries
+    //Dagger 2
+    implementation 'com.google.dagger:dagger-android:2.11'
+    implementation 'com.google.dagger:dagger-android-support:2.11'
     annotationProcessor 'com.google.dagger:dagger-android-processor:2.11'
     annotationProcessor 'com.google.dagger:dagger-compiler:2.11'
 
-    compile 'com.jakewharton:butterknife:8.8.1'
+    //Butterknife
+    implementation 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+
+    //Rx
+    implementation "io.reactivex.rxjava2:rxjava:2.1.1"
+    implementation "io.reactivex.rxjava2:rxandroid:2.0.1"
+
+    def retrofitVersion = "2.3.0"
+
+    //Retrofit
+    implementation "com.squareup.retrofit2:retrofit:" + retrofitVersion
+    implementation "com.squareup.retrofit2:converter-gson:" + retrofitVersion
+    implementation "com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0"
+
+    def okHttpVersion = "3.9.0"
+
+    //OkHttp
+    implementation 'com.squareup.okhttp3:okhttp:' + okHttpVersion
+    implementation "com.squareup.okhttp3:logging-interceptor:" + okHttpVersion
+
+    //Gson
+    compile 'com.google.code.gson:gson:2.8.2'
 
 
 }

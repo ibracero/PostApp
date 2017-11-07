@@ -1,7 +1,6 @@
 package com.ibracero.postapp.presentation.ui.detail;
 
 import android.os.Bundle;
-import android.view.MenuItem;
 
 import com.babylonhealth.babylonpost.R;
 import com.ibracero.postapp.presentation.ui.base.BaseActivity;
