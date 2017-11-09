@@ -1,6 +1,6 @@
 package com.ibracero.postapp.domain.model;
 
-public class Post {
+public class PostModel {
 
     private int userId;
 
@@ -10,7 +10,7 @@ public class Post {
 
     private String body;
 
-    private Post(Builder builder) {
+    private PostModel(Builder builder) {
         setUserId(builder.userId);
         setId(builder.id);
         setTitle(builder.title);
@@ -78,8 +78,8 @@ public class Post {
             return this;
         }
 
-        public Post build() {
-            return new Post(this);
+        public PostModel build() {
+            return new PostModel(this);
         }
     }
 }

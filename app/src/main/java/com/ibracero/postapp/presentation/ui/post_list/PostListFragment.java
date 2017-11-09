@@ -2,12 +2,13 @@ package com.ibracero.postapp.presentation.ui.post_list;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.babylonhealth.babylonpost.R;
-import com.ibracero.postapp.domain.model.Post;
 import com.ibracero.postapp.presentation.di.components.ActivityComponent;
+import com.ibracero.postapp.presentation.model.PostViewModel;
 import com.ibracero.postapp.presentation.ui.base.BaseFragment;
 import com.ibracero.postapp.presentation.ui.error.ErrorNotificator;
 
@@ -29,6 +30,9 @@ public class PostListFragment extends BaseFragment implements PostListViewInterf
     @Inject
     ErrorNotificator mErrorNotificator;
 
+    @Inject
+    PostAdapter mPostAdapter;
+
     public static PostListFragment newInstance() {
         PostListFragment fragment = new PostListFragment();
         return fragment;
@@ -43,8 +47,15 @@ public class PostListFragment extends BaseFragment implements PostListViewInterf
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         this.getComponent(ActivityComponent.class).inject(this);
+
+        setupRecyclerView();
+
         mPresenter.setView(this);
         mPresenter.onStart();
+    }
+
+    private void setupRecyclerView() {
+        mRvPosts.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
 
     @Override
@@ -53,8 +64,9 @@ public class PostListFragment extends BaseFragment implements PostListViewInterf
     }
 
     @Override
-    public void showPosts(List<Post> posts) {
-        mErrorNotificator.showMessage(posts != null ? String.valueOf(posts.size()) : "0");
+    public void showPosts(List<PostViewModel> postViewModels) {
+        mPostAdapter.setDataset(postViewModels);
+        mRvPosts.setAdapter(mPostAdapter);
     }
 
     @Override

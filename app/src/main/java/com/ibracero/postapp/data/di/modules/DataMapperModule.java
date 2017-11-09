@@ -8,7 +8,7 @@ import dagger.Module;
 import dagger.Provides;
 
 @Module
-public class DataModule {
+public class DataMapperModule {
 
     @Singleton
     @Provides

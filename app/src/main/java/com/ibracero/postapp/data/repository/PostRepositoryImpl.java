@@ -2,7 +2,7 @@ package com.ibracero.postapp.data.repository;
 
 import com.ibracero.postapp.data.datasources.network.WebServicesApi;
 import com.ibracero.postapp.data.datasources.network.model.PostMapper;
-import com.ibracero.postapp.domain.model.Post;
+import com.ibracero.postapp.domain.model.PostModel;
 import com.ibracero.postapp.domain.repository.PostRepository;
 
 import java.util.List;
@@ -24,7 +24,7 @@ public class PostRepositoryImpl implements PostRepository {
     }
 
     @Override
-    public Single<List<Post>> getPosts() {
+    public Single<List<PostModel>> getPosts() {
         return mWebServicesApi.getPosts().map(mPostMapper::map);
     }
 }
