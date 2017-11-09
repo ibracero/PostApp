@@ -1,13 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:background="@drawable/background_post_item">
 
     <TextView
+        android:id="@+id/tv_post_title"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Hoooou!"/>
+        android:padding="@dimen/small_space"
+        tools:text="Hoooou!"/>
 
+    <TextView
+        android:id="@+id/tv_post_body"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_post_title"
+        android:padding="@dimen/small_space"
+        tools:text="Body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body "/>
+
+
+    <TextView
+        android:id="@+id/tv_comment_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/ll_writer_info"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/ll_writer_info"
+        android:layout_below="@id/tv_post_body"
+        android:gravity="center"
+        android:padding="@dimen/small_space"
+        tools:text="545"/>
+
+    <LinearLayout
+        android:id="@id/ll_writer_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_post_body"
+        android:layout_toStartOf="@id/tv_comment_number"
+        android:gravity="center"
+        android:padding="@dimen/small_space">
+
+        <ImageView
+            android:id="@+id/iv_writer_image"
+            android:layout_width="@dimen/writer_image_size"
+            android:layout_height="@dimen/writer_image_size"/>
+
+        <TextView
+            android:id="@+id/iv_writer_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/small_space"
+            android:layout_weight="1"
+            tools:text="Writer name nam"/>
+
+    </LinearLayout>
 
 </RelativeLayout>

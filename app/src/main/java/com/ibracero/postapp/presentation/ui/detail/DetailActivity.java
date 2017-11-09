@@ -22,7 +22,7 @@ public class DetailActivity extends BaseActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
-        PostListFragment fragment = PostListFragment.newInstance();
+        PostDetailFragment fragment = PostDetailFragment.newInstance();
         getSupportFragmentManager().beginTransaction().replace(R.id.fl_base_container, fragment).commit();
     }
 }
