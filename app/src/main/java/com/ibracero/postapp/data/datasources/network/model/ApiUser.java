@@ -28,6 +28,17 @@ public class ApiUser {
     @SerializedName("name")
     private String name;
 
+    private ApiUser(Builder builder) {
+        id = builder.id;
+        phone = builder.phone;
+        username = builder.username;
+        website = builder.website;
+        address = builder.address;
+        email = builder.email;
+        company = builder.company;
+        name = builder.name;
+    }
+
     public int getId() {
         return id;
     }
@@ -58,5 +69,64 @@ public class ApiUser {
 
     public String getName() {
         return name;
+    }
+
+
+    public static final class Builder {
+        private int id;
+        private String phone;
+        private String username;
+        private String website;
+        private ApiAddress address;
+        private String email;
+        private ApiCompany company;
+        private String name;
+
+        public Builder() {
+        }
+
+        public Builder id(int val) {
+            id = val;
+            return this;
+        }
+
+        public Builder phone(String val) {
+            phone = val;
+            return this;
+        }
+
+        public Builder username(String val) {
+            username = val;
+            return this;
+        }
+
+        public Builder website(String val) {
+            website = val;
+            return this;
+        }
+
+        public Builder address(ApiAddress val) {
+            address = val;
+            return this;
+        }
+
+        public Builder email(String val) {
+            email = val;
+            return this;
+        }
+
+        public Builder company(ApiCompany val) {
+            company = val;
+            return this;
+        }
+
+        public Builder name(String val) {
+            name = val;
+            return this;
+        }
+
+        public ApiUser build() {
+            return new ApiUser(this);
+        }
     }
 }
