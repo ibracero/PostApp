@@ -4,7 +4,7 @@ import com.ibracero.postapp.BaseUnitTest;
 import com.ibracero.postapp.domain.exception.GeneralWebServiceException;
 import com.ibracero.postapp.domain.model.PostModel;
 import com.ibracero.postapp.domain.use_case.posts.GetPostsUseCase;
-import com.ibracero.postapp.presentation.model.mapper.PostViewMapper;
+import com.ibracero.postapp.presentation.model.mapper.PostItemViewMapper;
 import com.ibracero.postapp.presentation.navigator.PostListNavigator;
 
 import org.junit.Test;
@@ -29,7 +29,7 @@ public class PostListPresenterTest extends BaseUnitTest {
     private GetPostsUseCase mGetPostsUseCase;
 
     @Mock
-    private PostViewMapper mPostViewMapper;
+    private PostItemViewMapper mPostViewMapper;
 
     @Mock
     private PostListViewInterface mViewMock;

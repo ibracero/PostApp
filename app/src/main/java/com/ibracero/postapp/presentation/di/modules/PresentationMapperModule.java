@@ -1,6 +1,6 @@
 package com.ibracero.postapp.presentation.di.modules;
 
-import com.ibracero.postapp.presentation.model.mapper.PostViewMapper;
+import com.ibracero.postapp.presentation.model.mapper.PostItemViewMapper;
 
 import javax.inject.Singleton;
 
@@ -12,8 +12,8 @@ public class PresentationMapperModule {
 
     @Singleton
     @Provides
-    public PostViewMapper providePostMapper() {
-        return new PostViewMapper();
+    public PostItemViewMapper providePostMapper() {
+        return new PostItemViewMapper();
     }
 
 }

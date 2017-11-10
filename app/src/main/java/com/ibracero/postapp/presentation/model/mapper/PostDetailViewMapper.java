@@ -16,8 +16,12 @@ public class PostDetailViewMapper extends Mapper<PostModel, PostDetailViewModel>
     @Override
     protected PostDetailViewModel transform(PostModel model) {
         return new PostDetailViewModel.Builder()
-                .postTitle(model.getTitle())
-                .postBody(model.getBody())
+                .postTitle(model.getTitle() != null
+                        ? model.getTitle()
+                        : "")
+                .postBody(model.getBody() != null
+                        ? model.getBody()
+                        : "")
                 .writerName(model.getWriter() != null
                         ? model.getWriter().getUsername()
                         : "")

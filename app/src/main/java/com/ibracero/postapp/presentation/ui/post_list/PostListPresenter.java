@@ -3,7 +3,7 @@ package com.ibracero.postapp.presentation.ui.post_list;
 import com.ibracero.postapp.domain.model.PostModel;
 import com.ibracero.postapp.domain.use_case.posts.GetPostsUseCase;
 import com.ibracero.postapp.presentation.di.qualifiers.PerActivity;
-import com.ibracero.postapp.presentation.model.mapper.PostViewMapper;
+import com.ibracero.postapp.presentation.model.mapper.PostItemViewMapper;
 import com.ibracero.postapp.presentation.navigator.PostListNavigator;
 import com.ibracero.postapp.presentation.ui.base.BasePresenter;
 
@@ -19,13 +19,13 @@ public class PostListPresenter extends BasePresenter<PostListViewInterface> {
     private final PostListNavigator mNavigator;
     private final GetPostsUseCase mGetPostsUseCase;
     private PostListViewInterface mView;
-    private final PostViewMapper mPostViewMapper;
+    private final PostItemViewMapper mPostViewMapper;
     private List<PostModel> mPostList;
 
     @Inject
     public PostListPresenter(PostListNavigator navigator,
                              GetPostsUseCase getPostsUseCase,
-                             PostViewMapper postViewMapper) {
+                             PostItemViewMapper postViewMapper) {
         mNavigator = navigator;
         mGetPostsUseCase = getPostsUseCase;
         mPostViewMapper = postViewMapper;
