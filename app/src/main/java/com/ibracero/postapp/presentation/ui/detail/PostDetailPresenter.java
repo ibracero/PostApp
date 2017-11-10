@@ -22,9 +22,9 @@ public class PostDetailPresenter extends BasePresenter<PostDetailViewInterface> 
     private PostModel mPost;
 
     @Inject
-    public PostDetailPresenter(GetPostCommentsUseCase getPostInfoUseCase,
+    public PostDetailPresenter(GetPostCommentsUseCase getPostCommentsUseCase,
                                PostDetailViewMapper postDetailViewMapper) {
-        mGetPostInfoUseCase = getPostInfoUseCase;
+        mGetPostInfoUseCase = getPostCommentsUseCase;
         mPostDetailViewMapper = postDetailViewMapper;
     }
 
@@ -40,10 +40,10 @@ public class PostDetailPresenter extends BasePresenter<PostDetailViewInterface> 
     @Override
     public void onStart() {
         mView.showPostInfo(mPostDetailViewMapper.map(mPost));
-        getPostInfo();
+        getPostComments();
     }
 
-    private void getPostInfo() {
+    private void getPostComments() {
         mGetPostInfoUseCase.setPostId(mPost.getId()).execute(new GetPostCommentSubscriber());
     }
 
