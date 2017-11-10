@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 public class ApiUser {
 
     @SerializedName("id")
-    private String id;
+    private int id;
 
     @SerializedName("phone")
     private String phone;
@@ -28,7 +28,7 @@ public class ApiUser {
     @SerializedName("name")
     private String name;
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 

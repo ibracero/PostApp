@@ -8,7 +8,7 @@ import android.view.View;
 
 import com.babylonhealth.babylonpost.R;
 import com.ibracero.postapp.presentation.di.components.ActivityComponent;
-import com.ibracero.postapp.presentation.model.PostViewModel;
+import com.ibracero.postapp.presentation.model.PostItemViewModel;
 import com.ibracero.postapp.presentation.ui.base.BaseFragment;
 import com.ibracero.postapp.presentation.ui.error.ErrorNotificator;
 
@@ -64,7 +64,7 @@ public class PostListFragment extends BaseFragment implements PostListViewInterf
     }
 
     @Override
-    public void showPosts(List<PostViewModel> postViewModels) {
+    public void showPosts(List<PostItemViewModel> postViewModels) {
         mPostAdapter.setDataset(postViewModels);
         mRvPosts.setAdapter(mPostAdapter);
     }

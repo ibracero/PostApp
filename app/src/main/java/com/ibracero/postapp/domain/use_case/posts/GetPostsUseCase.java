@@ -1,6 +1,7 @@
 package com.ibracero.postapp.domain.use_case.posts;
 
 import com.ibracero.postapp.domain.model.PostModel;
+import com.ibracero.postapp.domain.model.UserModel;
 import com.ibracero.postapp.domain.repository.PostRepository;
 import com.ibracero.postapp.domain.use_case.UseCase;
 
@@ -27,6 +28,18 @@ public class GetPostsUseCase extends UseCase<List<PostModel>> {
 
     @Override
     protected Single<List<PostModel>> buildSingle() {
-        return mPostRepository.getPosts();
+        return mPostRepository.getPosts()
+                .zipWith(mPostRepository.getUsers(), (postModels, userModels) -> {
+                    for (PostModel postModel : postModels) {
+                        for (UserModel userModel : userModels) {
+                            if (postModel.getUserId() == userModel.getId()) {
+                                postModel.setWriter(userModel);
+                            }
+                        }
+                    }
+                    return postModels;
+                })
+                .retry();
+
     }
 }

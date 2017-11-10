@@ -4,10 +4,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.babylonhealth.babylonpost.R;
-import com.ibracero.postapp.presentation.model.PostViewModel;
+import com.bumptech.glide.Glide;
+import com.ibracero.postapp.presentation.model.PostItemViewModel;
 
 import java.util.List;
 
@@ -18,7 +20,7 @@ import butterknife.ButterKnife;
 
 class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder> {
 
-    private List<PostViewModel> mDataset;
+    private List<PostItemViewModel> mDataset;
     private final PostListPresenter mPresenter;
 
     @Inject
@@ -41,7 +43,7 @@ class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder> {
         return mDataset.size();
     }
 
-    public void setDataset(List<PostViewModel> postViewModels) {
+    public void setDataset(List<PostItemViewModel> postViewModels) {
         mDataset = postViewModels;
         notifyDataSetChanged();
     }
@@ -51,14 +53,18 @@ class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder> {
         @BindView(R.id.tv_post_title)
         TextView mTvPostTitle;
 
+        @BindView(R.id.iv_writer_image)
+        ImageView mIvWriterImage;
+
         PostViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
 
-        void bind(PostViewModel model) {
+        void bind(PostItemViewModel model) {
             mTvPostTitle.setText(model.getTitle());
             mTvPostTitle.setOnClickListener(v -> mPresenter.onPostClicked(model.getId()));
+            Glide.with(itemView.getContext()).load(model.getWriterImage()).into(mIvWriterImage);
         }
     }
 }

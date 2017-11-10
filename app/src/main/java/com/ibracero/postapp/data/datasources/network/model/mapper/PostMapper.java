@@ -1,5 +1,6 @@
-package com.ibracero.postapp.data.datasources.network.model;
+package com.ibracero.postapp.data.datasources.network.model.mapper;
 
+import com.ibracero.postapp.data.datasources.network.model.ApiPost;
 import com.ibracero.postapp.domain.model.PostModel;
 import com.ibracero.postapp.domain.model.mapper.Mapper;
 
