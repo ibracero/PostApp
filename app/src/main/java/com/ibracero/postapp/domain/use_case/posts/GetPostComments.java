@@ -13,15 +13,15 @@ import javax.inject.Named;
 import io.reactivex.Scheduler;
 import io.reactivex.Single;
 
-public class GetPostInfoUseCase extends UseCase<List<CommentModel>> {
+public class GetPostComments extends UseCase<List<CommentModel>> {
 
     private final PostRepository mPostRepository;
     private int mPostId;
 
     @Inject
-    protected GetPostInfoUseCase(@Named("io") Scheduler scheduler,
-                                 @Named("main") Scheduler postExecutionScheduler,
-                                 PostRepository postRepository) {
+    protected GetPostComments(@Named("io") Scheduler scheduler,
+                              @Named("main") Scheduler postExecutionScheduler,
+                              PostRepository postRepository) {
         super(scheduler, postExecutionScheduler);
         mPostRepository = postRepository;
     }
@@ -43,7 +43,7 @@ public class GetPostInfoUseCase extends UseCase<List<CommentModel>> {
                 .retry();
     }
 
-    public GetPostInfoUseCase setPostId(int postId) {
+    public GetPostComments setPostId(int postId) {
         mPostId = postId;
         return this;
     }

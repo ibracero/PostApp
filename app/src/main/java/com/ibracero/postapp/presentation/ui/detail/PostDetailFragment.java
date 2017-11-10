@@ -41,7 +41,6 @@ public class PostDetailFragment extends BaseFragment implements PostDetailViewIn
     @BindView(R.id.fl_comment_counter_container)
     FrameLayout mFlCommentContainer;
 
-
     @Inject
     PostDetailPresenter mPresenter;
 
