@@ -1,6 +1,6 @@
 package com.ibracero.postapp.data.di.modules;
 
-import com.babylonhealth.babylonpost.BuildConfig;
+import com.ibracero.postapp.BuildConfig;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.ibracero.postapp.data.datasources.network.WebServicesApi;

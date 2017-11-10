@@ -5,8 +5,9 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.TextView;
 
-import com.babylonhealth.babylonpost.R;
+import com.ibracero.postapp.R;
 import com.ibracero.postapp.presentation.di.components.ActivityComponent;
 import com.ibracero.postapp.presentation.model.PostItemViewModel;
 import com.ibracero.postapp.presentation.ui.base.BaseFragment;
@@ -23,6 +24,9 @@ public class PostListFragment extends BaseFragment implements PostListViewInterf
 
     @BindView(R.id.rv_posts)
     RecyclerView mRvPosts;
+
+    @BindView(R.id.tv_empty_view)
+    TextView mEmptyView;
 
     @Inject
     PostListPresenter mPresenter;
@@ -67,6 +71,16 @@ public class PostListFragment extends BaseFragment implements PostListViewInterf
     public void showPosts(List<PostItemViewModel> postViewModels) {
         mPostAdapter.setDataset(postViewModels);
         mRvPosts.setAdapter(mPostAdapter);
+    }
+
+    @Override
+    public void showEmptyView() {
+        mEmptyView.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideEmptyView() {
+        mEmptyView.setVisibility(View.GONE);
     }
 
     @Override

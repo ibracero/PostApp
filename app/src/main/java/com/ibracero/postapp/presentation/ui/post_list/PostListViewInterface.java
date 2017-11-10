@@ -9,4 +9,9 @@ public interface PostListViewInterface extends BaseView {
     void showErrorMessage(String message);
 
     void showPosts(List<PostItemViewModel> postViewModels);
+
+    void showEmptyView();
+
+    void hideEmptyView();
+
 }

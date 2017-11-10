@@ -2,7 +2,7 @@ package com.ibracero.postapp.presentation.ui.detail;
 
 import com.ibracero.postapp.domain.model.CommentModel;
 import com.ibracero.postapp.domain.model.PostModel;
-import com.ibracero.postapp.domain.use_case.posts.GetPostComments;
+import com.ibracero.postapp.domain.use_case.posts.GetPostCommentsUseCase;
 import com.ibracero.postapp.presentation.di.qualifiers.PerActivity;
 import com.ibracero.postapp.presentation.model.mapper.PostDetailViewMapper;
 import com.ibracero.postapp.presentation.ui.base.BasePresenter;
@@ -16,13 +16,13 @@ import io.reactivex.observers.DisposableSingleObserver;
 @PerActivity
 public class PostDetailPresenter extends BasePresenter<PostDetailViewInterface> {
 
-    private final GetPostComments mGetPostInfoUseCase;
+    private final GetPostCommentsUseCase mGetPostInfoUseCase;
     private final PostDetailViewMapper mPostDetailViewMapper;
     private PostDetailViewInterface mView;
     private PostModel mPost;
 
     @Inject
-    public PostDetailPresenter(GetPostComments getPostInfoUseCase,
+    public PostDetailPresenter(GetPostCommentsUseCase getPostInfoUseCase,
                                PostDetailViewMapper postDetailViewMapper) {
         mGetPostInfoUseCase = getPostInfoUseCase;
         mPostDetailViewMapper = postDetailViewMapper;

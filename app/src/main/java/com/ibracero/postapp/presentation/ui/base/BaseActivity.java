@@ -12,7 +12,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 
-import com.babylonhealth.babylonpost.R;
+import com.ibracero.postapp.R;
 import com.ibracero.postapp.PostApp;
 import com.ibracero.postapp.presentation.di.components.ActivityComponent;
 import com.ibracero.postapp.presentation.di.components.AppComponent;

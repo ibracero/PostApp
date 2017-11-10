@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.babylonhealth.babylonpost.R;
+import com.ibracero.postapp.R;
 import com.bumptech.glide.Glide;
 import com.ibracero.postapp.presentation.model.PostItemViewModel;
 

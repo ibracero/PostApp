@@ -2,7 +2,7 @@ package com.ibracero.postapp.presentation.ui.post_list;
 
 import android.os.Bundle;
 
-import com.babylonhealth.babylonpost.R;
+import com.ibracero.postapp.R;
 import com.ibracero.postapp.presentation.ui.base.BaseActivity;
 
 public class MainActivity extends BaseActivity {
