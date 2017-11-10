@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">BabylonPost</string>
+
+    <string name="toolbar_title_list">Post List</string>
+    <string name="toolbar_title_detail">Post Detail</string>
+    <string name="posts_empty">Couldn\'t find any post</string>
 </resources>
