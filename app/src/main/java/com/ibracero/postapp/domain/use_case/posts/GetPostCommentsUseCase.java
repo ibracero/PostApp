@@ -1,7 +1,7 @@
 package com.ibracero.postapp.domain.use_case.posts;
 
 import com.ibracero.postapp.domain.model.CommentModel;
-import com.ibracero.postapp.domain.repository.PostRepository;
+import com.ibracero.postapp.domain.repository.CommentRepository;
 import com.ibracero.postapp.domain.use_case.UseCase;
 
 import java.util.ArrayList;
@@ -15,20 +15,20 @@ import io.reactivex.Single;
 
 public class GetPostCommentsUseCase extends UseCase<List<CommentModel>> {
 
-    private final PostRepository mPostRepository;
+    private final CommentRepository mCommentRepository;
     private int mPostId;
 
     @Inject
     protected GetPostCommentsUseCase(@Named("io") Scheduler scheduler,
                                      @Named("main") Scheduler postExecutionScheduler,
-                                     PostRepository postRepository) {
+                                     CommentRepository commentRepository) {
         super(scheduler, postExecutionScheduler);
-        mPostRepository = postRepository;
+        mCommentRepository = commentRepository;
     }
 
     @Override
     protected Single<List<CommentModel>> buildSingle() {
-        return mPostRepository.getComments()
+        return mCommentRepository.getComments()
                 .map(comments -> {
                     List<CommentModel> commentModels = new ArrayList<>();
 

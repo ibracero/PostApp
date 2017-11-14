@@ -1,24 +1,28 @@
 package com.ibracero.postapp.presentation.model.mapper;
 
-import com.ibracero.postapp.BaseUnitTest;
 import com.ibracero.postapp.Constants;
 import com.ibracero.postapp.domain.model.PostModel;
 import com.ibracero.postapp.domain.model.UserModel;
-import com.ibracero.postapp.presentation.model.PostDetailViewModel;
 import com.ibracero.postapp.presentation.model.PostItemViewModel;
 
+import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
+import org.mockito.MockitoAnnotations;
 
 import java.util.ArrayList;
 
 import static junit.framework.Assert.assertEquals;
 
-public class PostViewMapperTest extends BaseUnitTest {
+@RunWith(JUnit4.class)
+public class PostViewMapperTest {
 
     private PostItemViewMapper mPostViewMapper;
 
-    @Override
-    protected void setUp() {
+    @Before
+    public void setup() {
+
         mPostViewMapper = new PostItemViewMapper();
     }
 

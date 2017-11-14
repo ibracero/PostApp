@@ -12,10 +12,4 @@ public interface PostRepository {
 
     Single<List<PostModel>> getPosts();
 
-    Single<List<CommentModel>> getComments();
-
-    Single<List<UserModel>> getUsers();
-
-    Single<PostModel> getPostInfo(int postId);
-
 }

@@ -1,14 +1,16 @@
 package com.ibracero.postapp.presentation.ui.post_list;
 
-import com.ibracero.postapp.BaseUnitTest;
 import com.ibracero.postapp.domain.exception.GeneralWebServiceException;
 import com.ibracero.postapp.domain.model.PostModel;
-import com.ibracero.postapp.domain.use_case.posts.GetPostsUseCase;
+import com.ibracero.postapp.domain.use_case.comments.GetPostsUseCase;
 import com.ibracero.postapp.presentation.model.mapper.PostItemViewMapper;
 import com.ibracero.postapp.presentation.navigator.PostListNavigator;
 
+import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +20,8 @@ import static org.mockito.ArgumentMatchers.anyList;
 import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.verify;
 
-public class PostListPresenterTest extends BaseUnitTest {
+@RunWith(MockitoJUnitRunner.class)
+public class PostListPresenterTest {
 
     private PostListPresenter mPresenter;
 
@@ -36,8 +39,8 @@ public class PostListPresenterTest extends BaseUnitTest {
 
     private List<PostModel> mAnyPostList;
 
-    @Override
-    protected void setUp() {
+    @Before
+    public void setup() {
 
         mAnyPostList = getAnyPostList();
 

@@ -1,8 +1,5 @@
 package com.ibracero.postapp.domain.use_case;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import io.reactivex.Scheduler;
 import io.reactivex.Single;
 import io.reactivex.SingleObserver;
@@ -12,9 +9,8 @@ import io.reactivex.disposables.Disposable;
 
 public abstract class UseCase<T> {
 
-    protected final Scheduler scheduler;
-    protected final Scheduler postExecutionScheduler;
-    protected Set<Disposable> subscriptions = new HashSet<>();
+    private final Scheduler scheduler;
+    private final Scheduler postExecutionScheduler;
 
     protected UseCase(Scheduler scheduler,
                       Scheduler postExecutionScheduler) {
@@ -24,22 +20,13 @@ public abstract class UseCase<T> {
 
 
     public Disposable execute(SingleObserver<T> singleObserver) {
-        this.subscriptions.add((Disposable) getSingle().subscribeWith(singleObserver));
-        return getSubscription();
+        return (Disposable) getSingle().subscribeWith(singleObserver);
     }
 
     public Single<T> getSingle() {
         return buildSingle()
                 .subscribeOn(scheduler)
                 .observeOn(postExecutionScheduler);
-    }
-
-    public Disposable getSubscription() {
-        return new CompositeDisposable(subscriptions.toArray(new Disposable[subscriptions.size()]));
-    }
-
-    public void dispose() {
-        this.getSubscription().dispose();
     }
 
     protected abstract Single<T> buildSingle();

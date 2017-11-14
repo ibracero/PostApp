@@ -4,7 +4,13 @@ import com.ibracero.postapp.data.datasources.network.model.ApiUser;
 import com.ibracero.postapp.domain.model.UserModel;
 import com.ibracero.postapp.domain.model.mapper.Mapper;
 
+import javax.inject.Inject;
+
 public class UserMapper extends Mapper<ApiUser, UserModel> {
+
+    @Inject
+    public UserMapper() {
+    }
 
     @Override
     protected UserModel transform(ApiUser model) {

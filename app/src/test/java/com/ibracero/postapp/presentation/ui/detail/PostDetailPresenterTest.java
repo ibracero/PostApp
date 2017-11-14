@@ -1,13 +1,17 @@
 package com.ibracero.postapp.presentation.ui.detail;
 
-import com.ibracero.postapp.BaseUnitTest;
 import com.ibracero.postapp.domain.exception.GeneralWebServiceException;
 import com.ibracero.postapp.domain.model.PostModel;
 import com.ibracero.postapp.domain.use_case.posts.GetPostCommentsUseCase;
 import com.ibracero.postapp.presentation.model.mapper.PostDetailViewMapper;
 
+import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.ArrayList;
 
@@ -19,7 +23,8 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 
-public class PostDetailPresenterTest extends BaseUnitTest {
+@RunWith(MockitoJUnitRunner.class)
+public class PostDetailPresenterTest {
 
     private PostDetailPresenter mPresenter;
 
@@ -34,8 +39,9 @@ public class PostDetailPresenterTest extends BaseUnitTest {
 
     private PostModel mAnyPost;
 
-    @Override
-    protected void setUp() {
+    @Before
+    public void setup() {
+
         when(mGetPostCommentsUseCaseMock.setPostId(anyInt())).thenReturn(mGetPostCommentsUseCaseMock);
 
         mPresenter = new PostDetailPresenter(mGetPostCommentsUseCaseMock,

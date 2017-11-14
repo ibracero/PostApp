@@ -4,8 +4,8 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.ibracero.postapp.domain.log.Logger;
 import com.ibracero.postapp.presentation.di.qualifiers.PerActivity;
-import com.ibracero.postapp.presentation.ui.error.ErrorNotificator;
-import com.ibracero.postapp.presentation.ui.error.ErrorNotificatorToast;
+import com.ibracero.postapp.presentation.ui.error.Notificator;
+import com.ibracero.postapp.presentation.ui.error.ToastNotificator;
 
 import dagger.Module;
 import dagger.Provides;
@@ -27,8 +27,8 @@ public class ActivityModule {
 
     @Provides
     @PerActivity
-    ErrorNotificator provideErrorManager(Logger logger) {
-        return new ErrorNotificatorToast(activity, logger);
+    Notificator provideErrorManager(Logger logger) {
+        return new ToastNotificator(activity, logger);
     }
 
 }

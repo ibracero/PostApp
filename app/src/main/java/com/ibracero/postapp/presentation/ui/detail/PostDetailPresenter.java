@@ -18,7 +18,6 @@ public class PostDetailPresenter extends BasePresenter<PostDetailViewInterface> 
 
     private final GetPostCommentsUseCase mGetPostInfoUseCase;
     private final PostDetailViewMapper mPostDetailViewMapper;
-    private PostDetailViewInterface mView;
     private PostModel mPost;
 
     @Inject
@@ -26,11 +25,6 @@ public class PostDetailPresenter extends BasePresenter<PostDetailViewInterface> 
                                PostDetailViewMapper postDetailViewMapper) {
         mGetPostInfoUseCase = getPostCommentsUseCase;
         mPostDetailViewMapper = postDetailViewMapper;
-    }
-
-    @Override
-    public void setView(PostDetailViewInterface view) {
-        mView = view;
     }
 
     public void setPostModel(PostModel post) {
@@ -44,12 +38,8 @@ public class PostDetailPresenter extends BasePresenter<PostDetailViewInterface> 
     }
 
     private void getPostComments() {
-        mGetPostInfoUseCase.setPostId(mPost.getId()).execute(new GetPostCommentSubscriber());
-    }
-
-    @Override
-    public void onDestroy() {
-        mGetPostInfoUseCase.dispose();
+        addDisposable(mGetPostInfoUseCase.setPostId(mPost.getId())
+                .execute(new GetPostCommentSubscriber()));
     }
 
     public class GetPostCommentSubscriber extends DisposableSingleObserver<List<CommentModel>> {

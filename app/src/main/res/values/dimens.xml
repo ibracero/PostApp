@@ -9,5 +9,6 @@
 
     <dimen name="writer_image_size">40dp</dimen>
     <dimen name="comment_counter_image_size">40dp</dimen>
+    <dimen name="loading_size">40dp</dimen>
 
 </resources>

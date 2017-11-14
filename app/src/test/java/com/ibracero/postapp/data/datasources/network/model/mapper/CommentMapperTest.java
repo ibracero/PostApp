@@ -1,19 +1,22 @@
 package com.ibracero.postapp.data.datasources.network.model.mapper;
 
-import com.ibracero.postapp.BaseUnitTest;
 import com.ibracero.postapp.data.datasources.network.model.ApiComment;
 import com.ibracero.postapp.domain.model.CommentModel;
 
+import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 
 import static junit.framework.Assert.assertEquals;
 
-public class CommentMapperTest extends BaseUnitTest {
+@RunWith(JUnit4.class)
+public class CommentMapperTest {
 
     private CommentMapper mCommentMapper;
 
-    @Override
-    protected void setUp() {
+    @Before
+    public void setup() {
         mCommentMapper = new CommentMapper();
     }
 

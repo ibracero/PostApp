@@ -3,17 +3,16 @@ package com.ibracero.postapp.presentation.ui.detail;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.ibracero.postapp.R;
 import com.bumptech.glide.Glide;
+import com.ibracero.postapp.R;
 import com.ibracero.postapp.domain.model.PostModel;
 import com.ibracero.postapp.presentation.di.components.ActivityComponent;
 import com.ibracero.postapp.presentation.model.PostDetailViewModel;
 import com.ibracero.postapp.presentation.ui.base.BaseFragment;
-import com.ibracero.postapp.presentation.ui.error.ErrorNotificator;
+import com.ibracero.postapp.presentation.ui.error.Notificator;
 
 import javax.inject.Inject;
 
@@ -38,14 +37,11 @@ public class PostDetailFragment extends BaseFragment implements PostDetailViewIn
     @BindView(R.id.tv_comment_number)
     TextView mCommentCounter;
 
-    @BindView(R.id.fl_comment_counter_container)
-    FrameLayout mFlCommentContainer;
-
     @Inject
     PostDetailPresenter mPresenter;
 
     @Inject
-    ErrorNotificator mErrorNotificator;
+    Notificator mErrorNotificator;
 
     public static PostDetailFragment newInstance(PostModel post) {
         Bundle bundle = new Bundle();
@@ -65,8 +61,8 @@ public class PostDetailFragment extends BaseFragment implements PostDetailViewIn
         super.onViewCreated(view, savedInstanceState);
         this.getComponent(ActivityComponent.class).inject(this);
 
-        mPresenter.setView(this);
         mPresenter.setPostModel(getPostDetailViewArgument());
+        mPresenter.attachView(this);
         mPresenter.onStart();
     }
 
@@ -86,10 +82,16 @@ public class PostDetailFragment extends BaseFragment implements PostDetailViewIn
 
     @Override
     public void showCommentCounter() {
-        mFlCommentContainer.setVisibility(View.VISIBLE);
+        mCommentCounter.setVisibility(View.VISIBLE);
     }
 
     private PostModel getPostDetailViewArgument() {
         return getArguments() != null ? getArguments().getParcelable(EXTRA_POST) : null;
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        mPresenter.detachView();
     }
 }
