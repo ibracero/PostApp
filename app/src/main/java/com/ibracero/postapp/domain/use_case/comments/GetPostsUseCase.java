@@ -42,8 +42,7 @@ public class GetPostsUseCase extends UseCase<List<PostModel>> {
                         }
                     }
                     return postModels;
-                })
-                .retry();
+                });
 
     }
 }

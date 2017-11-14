@@ -39,8 +39,7 @@ public class GetPostCommentsUseCase extends UseCase<List<CommentModel>> {
                     }
 
                     return commentModels;
-                })
-                .retry();
+                });
     }
 
     public GetPostCommentsUseCase setPostId(int postId) {
