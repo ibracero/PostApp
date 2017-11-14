@@ -47,7 +47,7 @@ public class PostDetailPresenterTest {
         mPresenter = new PostDetailPresenter(mGetPostCommentsUseCaseMock,
                 mPostDetailViewMapperMock);
 
-        mPresenter.setView(mViewMock);
+        mPresenter.attachView(mViewMock);
         mPresenter.setPostModel(mAnyPost = getAnyPost());
     }
 
@@ -94,13 +94,6 @@ public class PostDetailPresenterTest {
 
         mPresenter.onStart();
         verify(mViewMock).showGetPostInfoFailed("error");
-    }
-
-    @Test
-    public void shouldDisposeUseCasesOnDestroy() {
-        mPresenter.onDestroy();
-        verify(mGetPostCommentsUseCaseMock).dispose();
-        verifyNoMoreInteractions(mGetPostCommentsUseCaseMock);
     }
 
     private PostModel getAnyPost() {

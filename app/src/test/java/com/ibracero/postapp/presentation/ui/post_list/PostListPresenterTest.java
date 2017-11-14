@@ -4,7 +4,7 @@ import com.ibracero.postapp.domain.exception.GeneralWebServiceException;
 import com.ibracero.postapp.domain.model.PostModel;
 import com.ibracero.postapp.domain.use_case.comments.GetPostsUseCase;
 import com.ibracero.postapp.presentation.model.mapper.PostItemViewMapper;
-import com.ibracero.postapp.presentation.navigator.PostListNavigator;
+import com.ibracero.postapp.presentation.navigator.Navigator;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -26,7 +26,7 @@ public class PostListPresenterTest {
     private PostListPresenter mPresenter;
 
     @Mock
-    private PostListNavigator mNavigatorMock;
+    private Navigator mNavigatorMock;
 
     @Mock
     private GetPostsUseCase mGetPostsUseCase;
@@ -48,7 +48,7 @@ public class PostListPresenterTest {
                 mGetPostsUseCase,
                 mPostViewMapper);
 
-        mPresenter.setView(mViewMock);
+        mPresenter.attachView(mViewMock);
     }
 
     @Test
@@ -102,13 +102,6 @@ public class PostListPresenterTest {
         verify(mViewMock).hideLoading();
         verify(mViewMock).showEmptyView();
         verify(mViewMock).showErrorMessage("error");
-    }
-
-    @Test
-    public void shouldDisposeUseCasesOnDestroy() {
-        mPresenter.onDestroy();
-
-        verify(mGetPostsUseCase).dispose();
     }
 
     private List<PostModel> getAnyPostList() {
