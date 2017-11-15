@@ -1,9 +1,8 @@
 package com.ibracero.postapp.domain.model;
 
-import android.os.Parcel;
-import android.os.Parcelable;
+import java.io.Serializable;
 
-public class CommentModel implements Parcelable {
+public class CommentModel implements Serializable {
 
     private int postId;
     private String name;
@@ -16,38 +15,6 @@ public class CommentModel implements Parcelable {
         email = builder.email;
         body = builder.body;
     }
-
-    protected CommentModel(Parcel in) {
-        postId = in.readInt();
-        name = in.readString();
-        email = in.readString();
-        body = in.readString();
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(postId);
-        dest.writeString(name);
-        dest.writeString(email);
-        dest.writeString(body);
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    public static final Creator<CommentModel> CREATOR = new Creator<CommentModel>() {
-        @Override
-        public CommentModel createFromParcel(Parcel in) {
-            return new CommentModel(in);
-        }
-
-        @Override
-        public CommentModel[] newArray(int size) {
-            return new CommentModel[size];
-        }
-    };
 
     public int getPostId() {
         return postId;
@@ -97,5 +64,27 @@ public class CommentModel implements Parcelable {
         public CommentModel build() {
             return new CommentModel(this);
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        CommentModel that = (CommentModel) o;
+
+        if (postId != that.postId) return false;
+        if (name != null ? !name.equals(that.name) : that.name != null) return false;
+        if (email != null ? !email.equals(that.email) : that.email != null) return false;
+        return body != null ? body.equals(that.body) : that.body == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = postId;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (email != null ? email.hashCode() : 0);
+        result = 31 * result + (body != null ? body.hashCode() : 0);
+        return result;
     }
 }

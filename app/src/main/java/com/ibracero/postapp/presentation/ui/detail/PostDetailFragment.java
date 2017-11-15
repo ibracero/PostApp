@@ -45,7 +45,7 @@ public class PostDetailFragment extends BaseFragment implements PostDetailViewIn
 
     public static PostDetailFragment newInstance(PostModel post) {
         Bundle bundle = new Bundle();
-        bundle.putParcelable(EXTRA_POST, post);
+        bundle.putSerializable(EXTRA_POST, post);
         PostDetailFragment fragment = new PostDetailFragment();
         fragment.setArguments(bundle);
         return fragment;
@@ -86,7 +86,7 @@ public class PostDetailFragment extends BaseFragment implements PostDetailViewIn
     }
 
     private PostModel getPostDetailViewArgument() {
-        return getArguments() != null ? getArguments().getParcelable(EXTRA_POST) : null;
+        return getArguments() != null ? (PostModel) getArguments().getSerializable(EXTRA_POST) : null;
     }
 
     @Override
