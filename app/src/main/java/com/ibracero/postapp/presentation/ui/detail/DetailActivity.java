@@ -29,8 +29,8 @@ public class DetailActivity extends BaseActivity {
     private PostModel getPostExtra() {
 
         if (getIntent().getExtras() != null) {
-            if (getIntent().getParcelableExtra(POST_EXTRA) != null) {
-                return getIntent().getParcelableExtra(POST_EXTRA);
+            if (getIntent().getSerializableExtra(POST_EXTRA) != null) {
+                return (PostModel) getIntent().getSerializableExtra(POST_EXTRA);
             }
         }
 

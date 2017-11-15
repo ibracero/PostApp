@@ -11,7 +11,7 @@ import com.ibracero.postapp.R;
 import com.ibracero.postapp.presentation.di.components.ActivityComponent;
 import com.ibracero.postapp.presentation.model.PostItemViewModel;
 import com.ibracero.postapp.presentation.ui.base.BaseFragment;
-import com.ibracero.postapp.presentation.ui.error.ErrorNotificator;
+import com.ibracero.postapp.presentation.ui.error.Notificator;
 
 import java.util.List;
 
@@ -32,7 +32,7 @@ public class PostListFragment extends BaseFragment implements PostListViewInterf
     PostListPresenter mPresenter;
 
     @Inject
-    ErrorNotificator mErrorNotificator;
+    Notificator mErrorNotificator;
 
     @Inject
     PostAdapter mPostAdapter;
@@ -54,7 +54,7 @@ public class PostListFragment extends BaseFragment implements PostListViewInterf
 
         setupRecyclerView();
 
-        mPresenter.setView(this);
+        mPresenter.attachView(this);
         mPresenter.onStart();
     }
 
@@ -84,8 +84,8 @@ public class PostListFragment extends BaseFragment implements PostListViewInterf
     }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
-        mPresenter.onDestroy();
+    public void onStop() {
+        super.onStop();
+        mPresenter.detachView();
     }
 }

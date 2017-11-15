@@ -34,24 +34,16 @@
         android:gravity="center"
         android:padding="@dimen/small_space">
 
-        <FrameLayout
-            android:id="@+id/fl_comment_counter_container"
+        <TextView
+            android:id="@+id/tv_comment_number"
             android:layout_width="@dimen/comment_counter_image_size"
             android:layout_height="@dimen/comment_counter_image_size"
-            android:orientation="vertical"
+            android:background="@drawable/ic_comment"
+            android:gravity="center_horizontal"
+            android:paddingTop="@dimen/small_space"
             android:visibility="gone"
-            tools:visibility="visible">
-
-            <TextView
-                android:id="@+id/tv_comment_number"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/ic_comment"
-                android:gravity="center_horizontal"
-                android:paddingTop="@dimen/small_space"
-                tools:text="54"/>
-
-        </FrameLayout>
+            tools:text="54"
+            tools:visibility="visible"/>
 
         <ImageView
             android:id="@+id/iv_writer_image"

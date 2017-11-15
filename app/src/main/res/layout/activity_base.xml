@@ -26,8 +26,8 @@
 
     <ProgressBar
         android:id="@+id/pb_loading"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="@dimen/loading_size"
+        android:layout_height="@dimen/loading_size"
         android:layout_alignBottom="@id/fl_base_container"
         android:layout_alignTop="@id/fl_base_container"
         android:layout_centerInParent="true"

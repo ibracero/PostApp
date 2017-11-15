@@ -4,7 +4,14 @@ import com.ibracero.postapp.data.datasources.network.model.ApiComment;
 import com.ibracero.postapp.domain.model.CommentModel;
 import com.ibracero.postapp.domain.model.mapper.Mapper;
 
+import javax.inject.Inject;
+
 public class CommentMapper extends Mapper<ApiComment, CommentModel> {
+
+    @Inject
+    public CommentMapper() {
+    }
+
     @Override
     protected CommentModel transform(ApiComment model) {
         return new CommentModel.Builder()

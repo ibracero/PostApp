@@ -1,9 +1,8 @@
 package com.ibracero.postapp.domain.model;
 
-import android.os.Parcel;
-import android.os.Parcelable;
+import java.io.Serializable;
 
-public class UserModel implements Parcelable{
+public class UserModel implements Serializable {
 
     private int id;
 
@@ -16,36 +15,6 @@ public class UserModel implements Parcelable{
         username = builder.username;
         email = builder.email;
     }
-
-    protected UserModel(Parcel in) {
-        id = in.readInt();
-        username = in.readString();
-        email = in.readString();
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(id);
-        dest.writeString(username);
-        dest.writeString(email);
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    public static final Creator<UserModel> CREATOR = new Creator<UserModel>() {
-        @Override
-        public UserModel createFromParcel(Parcel in) {
-            return new UserModel(in);
-        }
-
-        @Override
-        public UserModel[] newArray(int size) {
-            return new UserModel[size];
-        }
-    };
 
     public int getId() {
         return id;
@@ -86,5 +55,20 @@ public class UserModel implements Parcelable{
         public UserModel build() {
             return new UserModel(this);
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        UserModel userModel = (UserModel) o;
+
+        return id == userModel.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return id;
     }
 }

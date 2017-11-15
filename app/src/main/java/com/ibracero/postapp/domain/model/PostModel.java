@@ -1,11 +1,9 @@
 package com.ibracero.postapp.domain.model;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
+import java.io.Serializable;
 import java.util.List;
 
-public class PostModel implements Parcelable {
+public class PostModel implements Serializable {
 
     private int userId;
 
@@ -27,42 +25,6 @@ public class PostModel implements Parcelable {
         setComments(builder.comments);
         setWriter(builder.writer);
     }
-
-    protected PostModel(Parcel in) {
-        userId = in.readInt();
-        id = in.readInt();
-        title = in.readString();
-        body = in.readString();
-        comments = in.createTypedArrayList(CommentModel.CREATOR);
-        writer = in.readParcelable(UserModel.class.getClassLoader());
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(userId);
-        dest.writeInt(id);
-        dest.writeString(title);
-        dest.writeString(body);
-        dest.writeTypedList(comments);
-        dest.writeParcelable(writer, flags);
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    public static final Creator<PostModel> CREATOR = new Creator<PostModel>() {
-        @Override
-        public PostModel createFromParcel(Parcel in) {
-            return new PostModel(in);
-        }
-
-        @Override
-        public PostModel[] newArray(int size) {
-            return new PostModel[size];
-        }
-    };
 
     public int getUserId() {
         return userId;
@@ -156,5 +118,20 @@ public class PostModel implements Parcelable {
         public PostModel build() {
             return new PostModel(this);
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        PostModel postModel = (PostModel) o;
+
+        return id == postModel.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return id;
     }
 }

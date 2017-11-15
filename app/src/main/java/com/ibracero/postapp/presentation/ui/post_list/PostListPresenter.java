@@ -1,10 +1,10 @@
 package com.ibracero.postapp.presentation.ui.post_list;
 
 import com.ibracero.postapp.domain.model.PostModel;
-import com.ibracero.postapp.domain.use_case.posts.GetPostsUseCase;
+import com.ibracero.postapp.domain.use_case.comments.GetPostsUseCase;
 import com.ibracero.postapp.presentation.di.qualifiers.PerActivity;
 import com.ibracero.postapp.presentation.model.mapper.PostItemViewMapper;
-import com.ibracero.postapp.presentation.navigator.PostListNavigator;
+import com.ibracero.postapp.presentation.navigator.Navigator;
 import com.ibracero.postapp.presentation.ui.base.BasePresenter;
 
 import java.util.List;
@@ -16,14 +16,14 @@ import io.reactivex.observers.DisposableSingleObserver;
 @PerActivity
 public class PostListPresenter extends BasePresenter<PostListViewInterface> {
 
-    private final PostListNavigator mNavigator;
+
+    private final Navigator mNavigator;
     private final GetPostsUseCase mGetPostsUseCase;
-    private PostListViewInterface mView;
     private final PostItemViewMapper mPostViewMapper;
     private List<PostModel> mPostList;
 
     @Inject
-    public PostListPresenter(PostListNavigator navigator,
+    public PostListPresenter(Navigator navigator,
                              GetPostsUseCase getPostsUseCase,
                              PostItemViewMapper postViewMapper) {
         mNavigator = navigator;
@@ -32,18 +32,13 @@ public class PostListPresenter extends BasePresenter<PostListViewInterface> {
     }
 
     @Override
-    public void setView(PostListViewInterface view) {
-        mView = view;
-    }
-
-    @Override
-    public void onStart() {
+    protected void onStart() {
         getPosts();
     }
 
     private void getPosts() {
         mView.showLoading();
-        mGetPostsUseCase.execute(new PostListSubscriber());
+        addDisposable(mGetPostsUseCase.execute(new PostListSubscriber()));
     }
 
     public void onPostClicked(int id) {
@@ -57,11 +52,6 @@ public class PostListPresenter extends BasePresenter<PostListViewInterface> {
             }
         }
         return null;
-    }
-
-    @Override
-    public void onDestroy() {
-        mGetPostsUseCase.dispose();
     }
 
     public class PostListSubscriber extends DisposableSingleObserver<List<PostModel>> {

@@ -21,7 +21,4 @@ public interface WebServicesApi {
 
     @GET("users")
     Single<List<ApiUser>> getUsers();
-
-    @GET("posts/{postId}")
-    Single<PostModel> getPostInfo(@Path("postId") int postId);
 }

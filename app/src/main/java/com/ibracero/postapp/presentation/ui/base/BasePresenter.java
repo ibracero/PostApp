@@ -1,13 +1,32 @@
 package com.ibracero.postapp.presentation.ui.base;
 
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
+
 public abstract class BasePresenter<V> {
 
-    private static final String TAG = BasePresenter.class.getSimpleName();
+    private CompositeDisposable mCompositeDisposable;
 
-    public abstract void setView(V view);
+    protected V mView;
 
-    public abstract void onStart();
+    public void attachView(V view) {
+        mView = view;
+        mCompositeDisposable = new CompositeDisposable();
+    }
 
-    public abstract void onDestroy();
+    protected abstract void onStart();
+
+    protected void addDisposable(Disposable disposable) {
+        if (disposable != null)
+            mCompositeDisposable.add(disposable);
+    }
+
+    public void detachView() {
+        if (mCompositeDisposable != null
+                && !mCompositeDisposable.isDisposed()) {
+            mCompositeDisposable.dispose();
+        }
+        mView = null;
+    }
 
 }

@@ -3,8 +3,6 @@ package com.ibracero.postapp.presentation.ui.base;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
@@ -12,19 +10,18 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 
-import com.ibracero.postapp.R;
 import com.ibracero.postapp.PostApp;
+import com.ibracero.postapp.R;
 import com.ibracero.postapp.presentation.di.components.ActivityComponent;
 import com.ibracero.postapp.presentation.di.components.AppComponent;
 import com.ibracero.postapp.presentation.di.modules.ActivityModule;
 import com.ibracero.postapp.presentation.di.qualifiers.HasComponent;
-import com.ibracero.postapp.presentation.navigator.NavigationView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-public abstract class BaseActivity extends AppCompatActivity implements HasComponent<ActivityComponent>, NavigationView {
+public abstract class BaseActivity extends AppCompatActivity implements HasComponent<ActivityComponent> {
 
     protected ActivityComponent mActivityComponent;
 
@@ -98,21 +95,6 @@ public abstract class BaseActivity extends AppCompatActivity implements HasCompo
         super.onDestroy();
         unbinder.unbind();
     }
-
-
-    public void navigateTo(Fragment fragment) {
-
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-
-        transaction.replace(mBaseContainer.getId(), fragment);
-        transaction.addToBackStack(null);
-        transaction.commit();
-    }
-
-    public void navigateTo(Intent intent) {
-        startActivity(intent);
-    }
-
 
     @Override
     public void startActivity(Intent intent) {
