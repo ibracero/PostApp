@@ -17,7 +17,8 @@ public abstract class BasePresenter<V> {
     protected abstract void onStart();
 
     protected void addDisposable(Disposable disposable) {
-        mCompositeDisposable.add(disposable);
+        if (disposable != null)
+            mCompositeDisposable.add(disposable);
     }
 
     public void detachView() {
