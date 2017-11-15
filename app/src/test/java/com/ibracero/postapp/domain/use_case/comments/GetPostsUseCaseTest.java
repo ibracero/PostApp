@@ -106,7 +106,7 @@ public class GetPostsUseCaseTest {
 
         List<PostModel> postsMock = new ArrayList<>();
 
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < 5; i++) {
             postsMock.add(new PostModel.Builder()
                     .id(i)
                     .title("title " + i)
@@ -121,7 +121,7 @@ public class GetPostsUseCaseTest {
 
         List<UserModel> usersMock = new ArrayList<>();
 
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < 5; i++) {
             usersMock.add(new UserModel.Builder()
                     .id(i)
                     .username("username " + i)
